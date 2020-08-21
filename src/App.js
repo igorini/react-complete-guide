@@ -72,7 +72,7 @@ class App extends Component {
         <h1>React App</h1>
         <button
           style={style}
-          onClick={this.togglePersonsHandler}>Switch Name
+          onClick={this.togglePersonsHandler}>Toggle Persons
         </button>
         {persons}
       </div>
