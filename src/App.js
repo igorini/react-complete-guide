@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import Person from "./Person/Person";
 import ValidationComponent from "./ValidationComponent/ValidationComponent";
+import CharComponent from "./CharComponent/CharComponent";
 
 class App extends Component {
   state = {
@@ -11,7 +12,7 @@ class App extends Component {
       {id: 'aac', name: 'Charlie', age: 22}
     ],
     showPersons: false,
-    textLength: 0
+    text: ''
   }
 
   nameChangedHandler = (event, id) => {
@@ -43,8 +44,8 @@ class App extends Component {
     this.setState({showPersons: !doesShow});
   }
 
-  texLengthHandler = event => {
-    this.setState({textLength: event.target.value.length})
+  textLengthHandler = event => {
+    this.setState({text: event.target.value})
   }
 
   render() {
@@ -55,6 +56,16 @@ class App extends Component {
       padding: '8px',
       cursor: 'pointer'
     };
+
+    const uniqueChars = [...new Set(this.state.text)];
+
+    let chars = (
+      <div>
+        {uniqueChars.map(char => {
+          return <CharComponent char={char}/>
+        })}
+      </div>
+    );
 
     let persons = null;
 
@@ -76,9 +87,10 @@ class App extends Component {
     return (
       <div className="App">
         <h1>React App</h1>
-        <input type="text" onChange={this.texLengthHandler}/>
-        <p>Length of the text: {this.state.textLength}</p>
-        <ValidationComponent textLength={this.state.textLength} />
+        <input type="text" onChange={this.textLengthHandler}/>
+        <p>Length of the text: {this.state.text.length}</p>
+        <ValidationComponent textLength={this.state.text.length} />
+        {chars}
         <button
           style={style}
           onClick={this.togglePersonsHandler}>Toggle Persons
