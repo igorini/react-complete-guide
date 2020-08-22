@@ -1,7 +1,7 @@
 import React from 'react';
-import './CharComponent.css'
+import './Char.css'
 
-const charComponent = props => {
+const char = props => {
   return (
     <div className="CharComponent" onClick={props.click}>
       {props.char}
@@ -9,4 +9,4 @@ const charComponent = props => {
   );
 };
 
-export default charComponent;
+export default char;
