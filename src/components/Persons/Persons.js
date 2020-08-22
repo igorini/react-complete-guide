@@ -1,11 +1,9 @@
 import React from 'react';
 
-const persons = () => {
-  return (
-    <div>
-      
-    </div>
-  );
-};
+const persons = props => (
+  <div>
+
+  </div>
+);
 
 export default persons;

@@ -1,11 +1,9 @@
 import React from 'react';
 
-const cockpit = () => {
-  return (
-    <div>
-      
-    </div>
-  );
-};
+const cockpit = () => (
+  <div>
+
+  </div>
+);
 
 export default cockpit;
