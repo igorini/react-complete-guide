@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Person from "./Person/Person";
+import ValidationComponent from "./ValidationComponent/ValidationComponent";
 
 class App extends Component {
   state = {
@@ -77,6 +78,7 @@ class App extends Component {
         <h1>React App</h1>
         <input type="text" onChange={this.texLengthHandler}/>
         <p>Length of the text: {this.state.textLength}</p>
+        <ValidationComponent textLength={this.state.textLength} />
         <button
           style={style}
           onClick={this.togglePersonsHandler}>Toggle Persons
