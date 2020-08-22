@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import classes from './App.css';
-import Person from "../components/Persons/Person/Person";
-import Validation from "../components/Validation/Validation";
-import Char from "../components/Char/Char";
+import Persons from "../components/Persons/Persons";
+import Cockpit from "../components/Cockpit/Cockpit";
 
 class App extends Component {
   state = {
@@ -54,58 +53,23 @@ class App extends Component {
   }
 
   render() {
-    const uniqueChars = [...new Set(this.state.text)];
-
-    let chars = (
-      <div>
-        {uniqueChars.map((char, index) => {
-          return <Char
-            char={char}
-            key={index}
-            click={() => this.charRemoveHandler(char)}/>
-        })}
-      </div>
-    );
-
     let persons = null;
-    let buttonClass = '';
-
     if (this.state.showPersons) {
-      persons = (
-        <div>
-          {this.state.persons.map((person, index) => {
-            return <Person
-              click={() => this.deletePersonHandler(index)}
-              name={person.name}
-              age={person.age}
-              key={person.id}
-              changed={(event) => this.nameChangedHandler(event, person.id)}/>
-          })}
-        </div>
-      );
-
-      buttonClass = classes.Red;
-    }
-
-    const assignedClasses = [];
-    if (this.state.persons.length <= 2) {
-      assignedClasses.push(classes.red);
-    }
-    if (this.state.persons.length <= 1) {
-      assignedClasses.push(classes.bold);
+      persons = <Persons
+            persons={this.state.persons}
+            clicked={this.deletePersonHandler}
+            changed={this.nameChangedHandler}/>
     }
 
     return (
       <div className={classes.App}>
-        <h1>React App</h1>
-        <p className={assignedClasses.join(' ')}>This is working</p>
-        <input type="text" onChange={this.textLengthHandler} value={this.state.text}/>
-        <p>Length of the text: {this.state.text.length}</p>
-        <Validation textLength={this.state.text.length}/>
-        {chars}
-        <button className={buttonClass}
-          onClick={this.togglePersonsHandler}>Toggle Persons
-        </button>
+        <Cockpit
+          showPersons={this.state.showPersons}
+          persons={this.state.persons}
+          buttonClicked={this.togglePersonsHandler}
+          text={this.state.text}
+          textChanged={this.textLengthHandler}
+          charClicked={this.charRemoveHandler}/>
         {persons}
       </div>
     );
