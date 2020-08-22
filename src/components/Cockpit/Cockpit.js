@@ -5,11 +5,11 @@ import Char from "../Char/Char";
 
 const cockpit = props => {
   useEffect(() => {
-    console.log('[Cockpit.js] useEffect')
-  });
+    console.log('[Cockpit.js] useEffect');
+  }, []);
 
   const assignedClasses = [];
-  let buttonClass = ''
+  let buttonClass = '';
 
   if (props.showPersons) {
     buttonClass = classes.Red;
