@@ -1,6 +1,6 @@
 import React from 'react';
 
-const validationComponent = (props) => {
+const validationComponent = props => {
   const minLength = 5;
 
   return (
