@@ -9,7 +9,8 @@ class App extends Component {
       {id: 'aab', name: 'Bob', age: 20},
       {id: 'aac', name: 'Charlie', age: 22}
     ],
-    showPersons: false
+    showPersons: false,
+    textLength: 0
   }
 
   nameChangedHandler = (event, id) => {
@@ -41,6 +42,10 @@ class App extends Component {
     this.setState({showPersons: !doesShow});
   }
 
+  texLengthHandler = event => {
+    this.setState({textLength: event.target.value.length})
+  }
+
   render() {
     const style = {
       backgroundColor: 'white',
@@ -70,6 +75,8 @@ class App extends Component {
     return (
       <div className="App">
         <h1>React App</h1>
+        <input type="text" onChange={this.texLengthHandler}/>
+        <p>Length of the text: {this.state.textLength}</p>
         <button
           style={style}
           onClick={this.togglePersonsHandler}>Toggle Persons
