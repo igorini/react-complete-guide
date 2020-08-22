@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Validation from "../Validation/Validation";
 import classes from "./Cockpit.css";
 import Char from "../Char/Char";
 
 const cockpit = props => {
+  useEffect(() => {
+    console.log('[Cockpit.js] useEffect')
+  });
+
   const assignedClasses = [];
   let buttonClass = ''
 
