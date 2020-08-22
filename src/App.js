@@ -48,6 +48,11 @@ class App extends Component {
     this.setState({text: event.target.value})
   }
 
+  charRemoveHandler = char => {
+    const newText = this.state.text.split('').filter(curChar => curChar !== char).join('');
+    this.setState({text: newText})
+  }
+
   render() {
     const style = {
       backgroundColor: 'white',
@@ -61,8 +66,11 @@ class App extends Component {
 
     let chars = (
       <div>
-        {uniqueChars.map(char => {
-          return <CharComponent char={char}/>
+        {uniqueChars.map((char, index) => {
+          return <CharComponent
+            char={char}
+            key={index}
+            click={() => this.charRemoveHandler(char)}/>
         })}
       </div>
     );
@@ -87,7 +95,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>React App</h1>
-        <input type="text" onChange={this.textLengthHandler}/>
+        <input type="text" onChange={this.textLengthHandler} value={this.state.text}/>
         <p>Length of the text: {this.state.text.length}</p>
         <ValidationComponent textLength={this.state.text.length} />
         {chars}
