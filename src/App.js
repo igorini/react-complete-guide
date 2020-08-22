@@ -3,7 +3,7 @@ import './App.css';
 import Person from "./Person/Person";
 import Validation from "./Validation/Validation";
 import Char from "./Char/Char";
-import Radium from "radium";
+import Radium, {StyleRoot} from "radium";
 
 class App extends Component {
   state = {
@@ -100,7 +100,7 @@ class App extends Component {
       style.backgroundColor = 'red';
       style[':hover'] = {
         backgroundColor: 'salmon',
-          color: 'black'
+        color: 'black'
       }
     }
 
@@ -113,19 +113,21 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
-        <h1>React App</h1>
-        <p className={classes.join(' ')}>This is working</p>
-        <input type="text" onChange={this.textLengthHandler} value={this.state.text}/>
-        <p>Length of the text: {this.state.text.length}</p>
-        <Validation textLength={this.state.text.length} />
-        {chars}
-        <button
-          style={style}
-          onClick={this.togglePersonsHandler}>Toggle Persons
-        </button>
-        {persons}
-      </div>
+      <StyleRoot>
+        <div className="App">
+          <h1>React App</h1>
+          <p className={classes.join(' ')}>This is working</p>
+          <input type="text" onChange={this.textLengthHandler} value={this.state.text}/>
+          <p>Length of the text: {this.state.text.length}</p>
+          <Validation textLength={this.state.text.length}/>
+          {chars}
+          <button
+            style={style}
+            onClick={this.togglePersonsHandler}>Toggle Persons
+          </button>
+          {persons}
+        </div>
+      </StyleRoot>
     );
   }
 }
