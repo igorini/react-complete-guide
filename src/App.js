@@ -6,15 +6,15 @@ import Validation from "./Validation/Validation";
 import Char from "./Char/Char";
 
 const StyledButton = styled.button`
-  background-color: green;
+  background-color: ${props => props.alt ? 'red' : 'green'};
   color: white;
   font: inherit;
   border: 1px solid blue;
   padding: 8px;
   cursor: pointer;
   
-  &:hover: {
-    background-color: lightgreen;
+  &:hover {
+    background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
     color: black;
   }
 `;
@@ -69,19 +69,6 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    };
-
     const uniqueChars = [...new Set(this.state.text)];
 
     let chars = (
@@ -110,12 +97,6 @@ class App extends Component {
           })}
         </div>
       );
-
-      style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'black'
-      }
     }
 
     const classes = [];
@@ -135,7 +116,7 @@ class App extends Component {
         <Validation textLength={this.state.text.length}/>
         {chars}
         <StyledButton
-          style={style}
+          alt={this.state.showPersons ? 1 : 0}
           onClick={this.togglePersonsHandler}>Toggle Persons
         </StyledButton>
         {persons}
