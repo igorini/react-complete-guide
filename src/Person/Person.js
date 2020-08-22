@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-//import './Person.css'
 
 const StyledDiv = styled.div`
       width: 60%;
@@ -16,11 +15,6 @@ const StyledDiv = styled.div`
     `;
 
 const person = props => {
-  const style = {
-    '@media (min-width: 500px' : {
-      width: '450px'
-    }
-  }
   return (
     //<div className="Person" style={style}>
     <StyledDiv>

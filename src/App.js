@@ -1,8 +1,23 @@
 import React, {Component} from 'react';
+import styled from 'styled-components';
 import './App.css';
 import Person from "./Person/Person";
 import Validation from "./Validation/Validation";
 import Char from "./Char/Char";
+
+const StyledButton = styled.button`
+  background-color: green;
+  color: white;
+  font: inherit;
+  border: 1px solid blue;
+  padding: 8px;
+  cursor: pointer;
+  
+  &:hover: {
+    background-color: lightgreen;
+    color: black;
+  }
+`;
 
 class App extends Component {
   state = {
@@ -119,10 +134,10 @@ class App extends Component {
         <p>Length of the text: {this.state.text.length}</p>
         <Validation textLength={this.state.text.length}/>
         {chars}
-        <button
+        <StyledButton
           style={style}
           onClick={this.togglePersonsHandler}>Toggle Persons
-        </button>
+        </StyledButton>
         {persons}
       </div>
     );
