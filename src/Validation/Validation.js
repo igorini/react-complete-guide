@@ -3,15 +3,13 @@ import React from 'react';
 const validation = props => {
   const minLength = 5;
 
+  const validationMessage = props.textLength >= minLength ?
+    "Text long enough" :
+    "Text too short";
+
   return (
     <div>
-      <p>
-        {
-          props.textLength >= minLength ?
-          "Text long enough" :
-          "Text too short"
-        }
-      </p>
+      <p>{validationMessage}</p>
     </div>
   );
 };
