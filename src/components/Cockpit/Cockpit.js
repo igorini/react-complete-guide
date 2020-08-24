@@ -1,11 +1,14 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import Validation from "../Validation/Validation";
 import classes from "./Cockpit.css";
 import Char from "../Char/Char";
 
 const cockpit = props => {
+  const toggleButtonRef = useRef(null);
+
   useEffect(() => {
     console.log('[Cockpit.js] useEffect');
+    toggleButtonRef.current.click();
   }, []);
 
   const assignedClasses = [];
@@ -42,8 +45,10 @@ const cockpit = props => {
       <p>Length of the text: {props.text.length}</p>
       <Validation textLength={props.text.length}/>
       {chars}
-      <button className={buttonClass}
-              onClick={props.buttonClicked}>Toggle Persons
+      <button
+        ref={toggleButtonRef}
+        className={buttonClass}
+        onClick={props.buttonClicked}>Toggle Persons
       </button>
     </div>
   );
