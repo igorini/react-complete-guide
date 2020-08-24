@@ -18,7 +18,8 @@ class App extends Component {
       {id: 'aac', name: 'Charlie', age: 22}
     ],
     showPersons: false,
-    text: ''
+    text: '',
+    authenticated: false
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -69,12 +70,16 @@ class App extends Component {
   }
 
   textLengthHandler = event => {
-    this.setState({text: event.target.value})
+    this.setState({text: event.target.value});
   }
 
   charRemoveHandler = char => {
     const newText = this.state.text.split('').filter(curChar => curChar !== char).join('');
-    this.setState({text: newText})
+    this.setState({text: newText});
+  }
+
+  loginHandler = () => {
+    this.setState({authenticated: true});
   }
 
   render() {
@@ -84,7 +89,8 @@ class App extends Component {
       persons = <Persons
             persons={this.state.persons}
             clicked={this.deletePersonHandler}
-            changed={this.nameChangedHandler}/>
+            changed={this.nameChangedHandler}
+            isAuthenticated={this.state.authenticated}/>
     }
 
     return (
@@ -94,6 +100,7 @@ class App extends Component {
           showPersons={this.state.showPersons}
           persons={this.state.persons}
           buttonClicked={this.togglePersonsHandler}
+          loginClicked={this.loginHandler}
           text={this.state.text}
           textChanged={this.textLengthHandler}
           charClicked={this.charRemoveHandler}/>
