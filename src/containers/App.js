@@ -3,6 +3,7 @@ import classes from './App.css';
 import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
 import Auxi from "../hoc/Auxi";
+import AuthContext from "../context/auth-context";
 import withClass from "../hoc/withClass";
 
 class App extends Component {
@@ -95,16 +96,18 @@ class App extends Component {
 
     return (
       <Auxi>
-        <Cockpit
-          title={this.props.appTitle}
-          showPersons={this.state.showPersons}
-          persons={this.state.persons}
-          buttonClicked={this.togglePersonsHandler}
-          loginClicked={this.loginHandler}
-          text={this.state.text}
-          textChanged={this.textLengthHandler}
-          charClicked={this.charRemoveHandler}/>
-        {persons}
+        <AuthContext.Provider value={{authenticated: this.state.authenticated, login:this.loginHandler}}>
+          <Cockpit
+            title={this.props.appTitle}
+            showPersons={this.state.showPersons}
+            persons={this.state.persons}
+            buttonClicked={this.togglePersonsHandler}
+            loginClicked={this.loginHandler}
+            text={this.state.text}
+            textChanged={this.textLengthHandler}
+            charClicked={this.charRemoveHandler}/>
+          {persons}
+        </AuthContext.Provider>
       </Auxi>
     );
   }
