@@ -1,16 +1,19 @@
-import React from 'react';
+import React, {Component} from 'react';
 import classes from './Person.css';
-import WithClass from "../../../hoc/WithClass";
+import Auxi from "../../../hoc/Auxi";
+import withClass from "../../../hoc/withClass";
 
-const person = props => {
-  console.log('[Person.js] rendering...');
-  return (
-    <WithClass classes={classes.Person}>
-      <p onClick={props.click}>I'm {props.name} and I'm {props.age} years old.</p>
-      <p>{props.children}</p>
-      <input type="text" onChange={props.changed} value={props.name}/>
-    </WithClass>
-  );
-};
+class Person extends Component {
+  render() {
+    console.log('[Person.js] rendering...');
+    return (
+      <Auxi>
+        <p onClick={this.props.click}>I'm {this.props.name} and I'm {this.props.age} years old.</p>
+        <p>{this.props.children}</p>
+        <input type="text" onChange={this.props.changed} value={this.props.name}/>
+      </Auxi>
+    );
+  }
+}
 
-export default person;
+export default withClass(Person, classes.Person);
